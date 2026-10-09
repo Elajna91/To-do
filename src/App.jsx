@@ -8,32 +8,63 @@ function App() {
   }
 
   function handleClear() {
-  setDraft("");
-}
+    setDraft("");
+  }
 
 
   const [todos, setTodos] = useState([
-    "Lära useState",
-    "Se re-render",
-    "Exam 2 senare",
+    { id: 1, text: "Lära useState", completed: false },
+    { id: 2, text: "Se re-render", completed: false },
+    { id: 3, text: "Exam 2 senare", completed: false },
   ]);
 
-function addDemo() {
-  setTodos([...todos, "Koda är kul"]);
-}
+  function addDemo() {
+    const newTodo = {
+      id: Date.now(),
+      text: "Koda är kul",
+      completed: false,
+    };
+
+    setTodos([...todos, newTodo]);
+  }
 
   function clearlist() {
     setTodos([]);
   }
 
-  function handleAdd () {
+  function handleAdd() {
     const text = draft.trim();
 
     if (text === "") return;
 
-    setTodos([...todos, text]);
+    const newTodo = {
+      id: Date.now(),
+      text: text,
+      completed: false,
+    };
+
+    setTodos([...todos, newTodo]);
     setDraft("");
   }
+
+  <ul>
+    {todos.map((todo) => (
+      <li key={todo.id}>
+        <input
+          type="checkbox"
+          checked={todo.completed}
+          on Change={() => toggleTodo(todo.id)}
+        />
+        <span
+          style={{
+            textDecoration: todo.completed ? "line-through" : "none",
+          }}
+        >
+          {todo.text}
+        </span>
+      </li>
+    ))}
+  </ul>
 
   return (
     <div>
@@ -54,14 +85,14 @@ function addDemo() {
         <p>Antal uppgifter: {todos.length}</p>
 
         <ul>
-         {todos.map((todo, index) => (
-         <li key={index}>{todo}</li>
-         ))}
-       </ul>
+          {todos.map((todo) => (
+            <li key={todo.id}>{todo.text}</li>
+          ))}
+        </ul>
 
         <button onClick={addDemo}>Lägg till rad</button>
         <button onClick={clearlist}>Rensa lista</button>
-        
+
       </main>
     </div>
   );
