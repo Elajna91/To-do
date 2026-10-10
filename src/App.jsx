@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 function App() {
-  const [draft, setDraft] = useState("Hej");
+  const [draft, setDraft] = useState("");
 
   function handleChange(e) {
     setDraft(e.target.value);
@@ -11,26 +11,24 @@ function App() {
     setDraft("");
   }
 
+  const [todos, setTodos] = useState([]);
 
-  const [todos, setTodos] = useState([
-    { id: 1, text: "Lära useState", completed: false },
-    { id: 2, text: "Se re-render", completed: false },
-    { id: 3, text: "Exam 2 senare", completed: false },
-  ]);
 
-  function addDemo() {
-    const newTodo = {
-      id: Date.now(),
-      text: "Koda är kul",
-      completed: false,
-    };
+  function toggleTodo(id) {
+    const updatedTodos = todos.map((todo) => {
+      if (todo.id === id) {
+        return { ...todo, completed: !todo.completed };
+      }
+      return todo;
+    });
 
-    setTodos([...todos, newTodo]);
+    setTodos(updatedTodos);
   }
 
-  function clearlist() {
-    setTodos([]);
+  function deleteTodo(id) {
+    setTodos(todos.filter((todo) => todo.id !== id));
   }
+
 
   function handleAdd() {
     const text = draft.trim();
@@ -47,54 +45,63 @@ function App() {
     setDraft("");
   }
 
-  <ul>
-    {todos.map((todo) => (
-      <li key={todo.id}>
-        <input
-          type="checkbox"
-          checked={todo.completed}
-          on Change={() => toggleTodo(todo.id)}
-        />
-        <span
-          style={{
-            textDecoration: todo.completed ? "line-through" : "none",
-          }}
-        >
-          {todo.text}
-        </span>
-      </li>
-    ))}
-  </ul>
+
 
   return (
-    <div>
-      <input
-        type="text"
-        value={draft}
-        onChange={handleChange}
-        placeholder="Skriv uppgift..."
-      />
 
-      <button type="button" onClick={handleClear}>Rensa</button>
-      <button type="button" onClick={handleAdd}>Lägg till</button>
 
-      <p>Kladd just nu: {draft}</p>
+    <main>
+      <h1>Inköpslista</h1>
+      <p>Antal varor: {todos.length}</p>
 
-      <main>
-        <h1>Övnings-todo</h1>
-        <p>Antal uppgifter: {todos.length}</p>
 
-        <ul>
-          {todos.map((todo) => (
-            <li key={todo.id}>{todo.text}</li>
-          ))}
-        </ul>
+      <ul>
+        {todos.map((todo) => (
+          <li key={todo.id}>
+            <input
+              type="checkbox"
+              checked={todo.completed}
+              onChange={() => toggleTodo(todo.id)}
+            />
+            <span
+              style={{
+                textDecoration: todo.completed ? "line-through" : "none",
+              }}
+            >
+              {todo.text}
+            </span>
+            <button onClick={() => deleteTodo(todo.id)}>
+              Ta bort
+            </button>
+          </li>
+        ))}
+      </ul>
 
-        <button onClick={addDemo}>Lägg till rad</button>
-        <button onClick={clearlist}>Rensa lista</button>
 
-      </main>
-    </div>
+
+      <div>
+        <input
+          type="text"
+          value={draft}
+          onChange={handleChange}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              handleAdd();
+            }
+          }}
+          placeholder="Skriv vilken vara..."
+        />
+
+
+        <button type="button" onClick={handleClear}>
+          Rensa
+        </button>
+
+        <button type="button" onClick={handleAdd}>
+          Lägg till
+        </button>
+      </div>
+    </main>
   );
 }
 
