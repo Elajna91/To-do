@@ -22,7 +22,7 @@ body {
 }
 
 .shopping-box {
-  background-color: rgb(143, 209, 172);
+  background-color: rgb(116, 173, 242);
   color: black;
   width: 90%;
   max-width: 450px;
@@ -61,7 +61,7 @@ button {
 }
 
 input[type="checkbox"] {
-  accent-color: rgb(72, 114, 72);
+  accent-color: rgb(156, 205, 236);
 }
 
 .shopping-box input[type="text"] {

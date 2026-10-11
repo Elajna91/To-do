@@ -84,16 +84,12 @@ function App() {
           placeholder="Skriv vilken vara..."
         />
 
-        <button onClick={() => setDraft("")}>
-          Rensa
-        </button>
-
         <button onClick={handleAdd}>
           Lägg till
         </button>
 
         <button onClick={clearList}>
-          Rensa lista
+          Rensa listan
         </button>
       </div>
     </main>

@@ -28,3 +28,7 @@ I koden används push() för att lägga till en uppgift i listan. Problemet är 
 
 3. Problemlösning och reflektion:
 När jag arbetade med det här projektet försökte jag lösa problem genom att testa koden och kontrollera resultatet i webbläsaren. Jag använde mig av tidigare material från lektioner och hjälp utav AI när jag behövde förstå hur React eller CSS fungerar. Ett exempel var att jag behövde undersöka hur state uppdateras när en uppgift läggs till eller tas bort. Jag testade då ändringarna för att se vad som hände och förstå varför lösningen fungerade. Jag bad AI förklara när jag inte förstod eller om jag inte lyckades lösa varför det blev fel i min kod. 
+
+
+Länk till inspelning: 
+https://funet-my.sharepoint.com/personal/3ggyhmu26_chanel_folkuniversitetet_nu/_layouts/15/stream.aspx?id=%2Fpersonal%2F3ggyhmu26%5Fchanel%5Ffolkuniversitetet%5Fnu%2FDocuments%2FInspelningar%2FM%C3%B6te%20med%20Elin%20Emma%20Kaili%20Chang%20Colon%20MU26%2D20261011%5F234220%2DM%C3%B6tesinspelning%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E10f7b924%2D3752%2D4fbf%2D840c%2D9a023ba0b5c0
