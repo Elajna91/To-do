@@ -2,38 +2,14 @@ import { useState } from "react";
 
 function App() {
   const [draft, setDraft] = useState("");
-
-  function handleChange(e) {
-    setDraft(e.target.value);
-  }
-
-  function handleClear() {
-    setDraft("");
-  }
-
   const [todos, setTodos] = useState([]);
-
-
-  function toggleTodo(id) {
-    const updatedTodos = todos.map((todo) => {
-      if (todo.id === id) {
-        return { ...todo, completed: !todo.completed };
-      }
-      return todo;
-    });
-
-    setTodos(updatedTodos);
-  }
-
-  function deleteTodo(id) {
-    setTodos(todos.filter((todo) => todo.id !== id));
-  }
-
 
   function handleAdd() {
     const text = draft.trim();
 
-    if (text === "") return;
+    if (text === "") {
+      return;
+    }
 
     const newTodo = {
       id: Date.now(),
@@ -45,15 +21,29 @@ function App() {
     setDraft("");
   }
 
+  function deleteTodo(id) {
+    setTodos(todos.filter((todo) => todo.id !== id));
+  }
 
+  function toggleTodo(id) {
+    setTodos(
+      todos.map((todo) =>
+        todo.id === id
+          ? { ...todo, completed: !todo.completed }
+          : todo
+      )
+    );
+  }
+
+  function clearList() {
+    setTodos([]);
+  }
 
   return (
-
-
-    <main>
+    <main className="shopping-box">
       <h1>Inköpslista</h1>
-      <p>Antal varor: {todos.length}</p>
 
+      <p>Antal varor: {todos.length}</p>
 
       <ul>
         {todos.map((todo) => (
@@ -63,13 +53,17 @@ function App() {
               checked={todo.completed}
               onChange={() => toggleTodo(todo.id)}
             />
+
             <span
               style={{
-                textDecoration: todo.completed ? "line-through" : "none",
+                textDecoration: todo.completed
+                  ? "line-through"
+                  : "none",
               }}
             >
               {todo.text}
             </span>
+
             <button onClick={() => deleteTodo(todo.id)}>
               Ta bort
             </button>
@@ -77,13 +71,11 @@ function App() {
         ))}
       </ul>
 
-
-
       <div>
         <input
           type="text"
           value={draft}
-          onChange={handleChange}
+          onChange={(e) => setDraft(e.target.value)}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               handleAdd();
@@ -92,13 +84,16 @@ function App() {
           placeholder="Skriv vilken vara..."
         />
 
-
-        <button type="button" onClick={handleClear}>
+        <button onClick={() => setDraft("")}>
           Rensa
         </button>
 
-        <button type="button" onClick={handleAdd}>
+        <button onClick={handleAdd}>
           Lägg till
+        </button>
+
+        <button onClick={clearList}>
+          Rensa lista
         </button>
       </div>
     </main>

@@ -1,16 +1,30 @@
-# React + Vite
+Min ToDo-app
+Om projektet:
+Jag har byggt en ToDo-app med React och JavaScript. I appen kan man lägga till olika uppgifter, markera dem som klara och ta bort dem. Jag har också använt CSS för att bestämma hur sidan ser ut.
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Funktioner:
+Lägga till uppgifter.
+Stoppa tomma uppgifter.
+Markera uppgifter som klara.
+Ta bort en uppgift.
+Uppdatera listan direkt utan att ladda om sidan.
 
-Currently, two official plugins are available:
+Tekniker:
+React
+JavaScript
+CSS
+Vite
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+1. Frågor om koden
 
-## React Compiler
+State-hantering:
+Jag använder useState för att kunna spara uppgifterna i en array som heter todos. Varje uppgift har en text och en status som visar om den är klar. När state uppdateras renderar React om de delar av sidan som behöver visa den nya informationen.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Oföränderlighet (Immutability):
+Man ska inte ändra en lista direkt i React, utan man ska skapa en ny lista när man lägger till eller tar bort uppgifter. Jag använder till exmpeklt...todos för att lägga till en uppgift och filter() för att ta bort en uppgift. Då skapas en ny lista istället för att ändra den gamla.
 
-## Expanding the Oxlint configuration
+2. Kodgranskning:
+I koden används push() för att lägga till en uppgift i listan. Problemet är att den ändrar den gamla listan direkt istället. I React ska man helst skapa en ny lista när man ändrar state. Jag kan till exempel använda [...todos, newTodo] för att lägga till en ny uppgift utan att ändra i den gamla listan.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+3. Problemlösning och reflektion:
+När jag arbetade med det här projektet försökte jag lösa problem genom att testa koden och kontrollera resultatet i webbläsaren. Jag använde mig av tidigare material från lektioner och hjälp utav AI när jag behövde förstå hur React eller CSS fungerar. Ett exempel var att jag behövde undersöka hur state uppdateras när en uppgift läggs till eller tas bort. Jag testade då ändringarna för att se vad som hände och förstå varför lösningen fungerade. Jag bad AI förklara när jag inte förstod eller om jag inte lyckades lösa varför det blev fel i min kod. 
